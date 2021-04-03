@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-03T08:54:28.102Z</updated>
+  <updated>2021-04-03T10:55:04.369Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,37 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Markdown 教程</title>
-    <link href="http://example.com/2021/04/03/markdown-jiao-cheng/"/>
-    <id>http://example.com/2021/04/03/markdown-jiao-cheng/</id>
-    <published>2021-04-03T07:59:37.000Z</published>
-    <updated>2021-04-03T08:54:28.102Z</updated>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;markdown-基本要素&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#markdown-基本要素&quot;&gt;&lt;/a&gt; Markdown 基本要素&lt;/h1&gt;
-&lt;p&gt;这篇文件意在简要介绍 GitHub Flavored Markdown 写作。&lt;/p&gt;
-&lt;p&gt;什么是 Markdown?&lt;/p&gt;
-&lt;p&gt;Markdown 是一种文本格式。你可以用它来控制文档的显示。使用 markdown，你可以创建粗体的文字，斜体的文字，添加图片，并且创建列表 等等。基本上来讲，Markdown 就是普通的文字加上 # 或者 * 等符号。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Markdown" scheme="http://example.com/categories/Markdown/"/>
-    
-    
-    <category term="Markdown" scheme="http://example.com/tags/Markdown/"/>
-    
-    <category term="基础" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80/"/>
-    
-    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello, world!</title>
-    <link href="http://example.com/2021/04/02/hello-world-0/"/>
-    <id>http://example.com/2021/04/02/hello-world-0/</id>
-    <published>2021-04-02T09:29:35.000Z</published>
-    <updated>2021-04-03T10:32:13.700Z</updated>
+    <title>如何用 C 语言画点阵图</title>
+    <link href="http://example.com/2021/04/03/ru-he-yong-c-yu-yan-hua-dian-zhen-tu/"/>
+    <id>http://example.com/2021/04/03/ru-he-yong-c-yu-yan-hua-dian-zhen-tu/</id>
+    <published>2021-04-03T10:53:56.000Z</published>
+    <updated>2021-04-03T10:55:04.369Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;1-如何用-c-语言画这个图&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#1-如何用-c-语言画这个图&quot;&gt;&lt;/a&gt; 1. 如何用 C 语言画这个图&lt;/h1&gt;
@@ -79,6 +53,32 @@
     <category term="C 语言" scheme="http://example.com/tags/C-%E8%AF%AD%E8%A8%80/"/>
     
     <category term="ASCII" scheme="http://example.com/tags/ASCII/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 教程</title>
+    <link href="http://example.com/2021/04/03/markdown-jiao-cheng/"/>
+    <id>http://example.com/2021/04/03/markdown-jiao-cheng/</id>
+    <published>2021-04-03T07:59:37.000Z</published>
+    <updated>2021-04-03T08:54:28.102Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;markdown-基本要素&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#markdown-基本要素&quot;&gt;&lt;/a&gt; Markdown 基本要素&lt;/h1&gt;
+&lt;p&gt;这篇文件意在简要介绍 GitHub Flavored Markdown 写作。&lt;/p&gt;
+&lt;p&gt;什么是 Markdown?&lt;/p&gt;
+&lt;p&gt;Markdown 是一种文本格式。你可以用它来控制文档的显示。使用 markdown，你可以创建粗体的文字，斜体的文字，添加图片，并且创建列表 等等。基本上来讲，Markdown 就是普通的文字加上 # 或者 * 等符号。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Markdown" scheme="http://example.com/categories/Markdown/"/>
+    
+    
+    <category term="Markdown" scheme="http://example.com/tags/Markdown/"/>
+    
+    <category term="基础" scheme="http://example.com/tags/%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="教程" scheme="http://example.com/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
