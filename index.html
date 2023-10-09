@@ -202,6 +202,164 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/10/cong-zheng-ze-biao-da-shi-pi-pei-ip-di-zhi-tan-qi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/MandelbrotSet.png">
+      <meta itemprop="name" content="pascal-lc">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="pascal-lc">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/10/cong-zheng-ze-biao-da-shi-pi-pei-ip-di-zhi-tan-qi/" class="post-title-link" itemprop="url">从正则表达式匹配 IP 地址谈起</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-10-10 00:14:53 / 修改时间：00:25:19" itemprop="dateCreated datePublished" datetime="2023-10-10T00:14:53+08:00">2023-10-10</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="从正则表达式匹配-ip-地址谈起"><a class="markdownIt-Anchor" href="#从正则表达式匹配-ip-地址谈起"></a> 从正则表达式匹配 IP 地址谈起</h1>
+<p>正则表达式 RegEx 是一种强大的字符串处理工具，在字符串处理中应用广泛。RegEx（Regular Expression）可以理解为匹配规则（Regular）的搜索模式。正则表达式匹配的不是字符串本身，而是一种字符串生成规则。凡是符合这一规则的字符串，都可以使用正则表达式检索获取。</p>
+<p>介绍完正则表达式的概念，这里可以通过一些实践来体会正则表达式的强大与便捷。下面介绍如何使用正则表达式匹配 IP 地址，这里作为练习只处理 IPv4 地址。</p>
+<p>待匹配字符串如下：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">$ arp -a
+
+接口: 192.168.216.1 --- 0x3
+  Internet 地址         物理地址              类型
+  192.168.216.255       ff-ff-ff-ff-ff-ff     静态
+  224.0.0.22            01-00-5e-00-00-16     静态
+  224.0.0.251           01-00-5e-00-00-fb     静态
+  224.0.0.252           01-00-5e-00-00-fc     静态
+  239.255.255.250       01-00-5e-7f-ff-fa     静态
+
+接口: 169.254.86.111 --- 0xd
+  Internet 地址         物理地址              类型
+  169.254.255.255       ff-ff-ff-ff-ff-ff     静态
+  224.0.0.22            01-00-5e-00-00-16     静态
+  224.0.0.251           01-00-5e-00-00-fb     静态
+  224.0.0.252           01-00-5e-00-00-fc     静态
+  239.255.255.250       01-00-5e-7f-ff-fa     静态
+
+接口: 192.168.1.2 --- 0xe
+  Internet 地址         物理地址              类型
+  192.168.1.1           18-13-2d-2f-fa-b4     动态
+  192.168.1.255         ff-ff-ff-ff-ff-ff     静态
+  224.0.0.22            01-00-5e-00-00-16     静态
+  224.0.0.251           01-00-5e-00-00-fb     静态
+  224.0.0.252           01-00-5e-00-00-fc     静态
+  239.255.255.250       01-00-5e-7f-ff-fa     静态
+  255.255.255.255       ff-ff-ff-ff-ff-ff     静态
+
+接口: 169.254.252.27 --- 0x14
+  Internet 地址         物理地址              类型
+  169.254.255.255       ff-ff-ff-ff-ff-ff     静态
+  224.0.0.22            01-00-5e-00-00-16     静态
+  224.0.0.251           01-00-5e-00-00-fb     静态
+  224.0.0.252           01-00-5e-00-00-fc     静态
+  239.255.255.250       01-00-5e-7f-ff-fa     静态
+  255.255.255.255       ff-ff-ff-ff-ff-ff     静态<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="初级"><a class="markdownIt-Anchor" href="#初级"></a> 初级</h2>
+<p>根据 IPv4 地址的格式，可以发现，IP 地址有 4 组数字组成，每组数字长度范围为从 1 位到 3 位，并且每组数字之间由 <code>.</code> 分割。那么根据这一规律，可以使用正则表达式写出匹配字符串：</p>
+<pre class="line-numbers language-regex" data-language="regex"><code class="language-regex"><span class="token group punctuation">(</span><span class="token group punctuation">(</span><span class="token charclass class-name">\d</span><span class="token quantifier number">{1,3}</span><span class="token group punctuation">)</span><span class="token special-escape escape">\.</span><span class="token group punctuation">)</span><span class="token quantifier number">{3}</span><span class="token group punctuation">(</span><span class="token charclass class-name">\d</span><span class="token quantifier number">{1,3}</span><span class="token group punctuation">)</span>
+<span class="token group punctuation">(</span><span class="token charclass class-name">\d</span><span class="token quantifier number">{1,3}</span><span class="token special-escape escape">\.</span><span class="token group punctuation">)</span><span class="token quantifier number">{3}</span><span class="token group punctuation">(</span><span class="token charclass class-name">\d</span><span class="token quantifier number">{1,3}</span><span class="token group punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>IP 地址由 4 个字节组成，每个字节 8 位，所以 IPv4 地址的取值范围是 0 ~ 255，共 256 个。</p>
+</blockquote>
+<p>这样的处理方法虽然简单，一目了然，但却需要面对一个大问题——正则表达式匹配出来的不是 IPv4 地址。例如：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">999.888.777.666
+......<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>这些非法 IPv4 地址字段也会在这一不严谨的正则表达式中匹配出来，这显然不是我们想要的。因此，我们需要对正则表达式进行改进，使其只匹配合法的 IPv4 地址。</p>
+<h2 id="高级"><a class="markdownIt-Anchor" href="#高级"></a> 高级</h2>
+<p>在构造一个正则表达式的时候，一定要考虑周全，避免出现匹配到不合法的字段，定义清楚的规则，确定可以匹配什么，以及不能匹配什么。</p>
+<p>在这个 IPv4 地址匹配的过程中，我们需要确定一个合法有效的 IPv4 地址的格式，即：</p>
+<ol>
+<li>4 组数字，每组数字范围为 1 ~ 255；</li>
+<li>每组数字之间用 <code>.</code> 分割；</li>
+<li>任意的 1 位或 2 位数字</li>
+<li>任意的以 <code>1</code> 开头的 3 位数字；</li>
+<li>任意的以 <code>2</code> 开头，第二位数字在 <code>0</code> 到 <code>4</code> 之间的 3 位数字；</li>
+<li>任意的以 <code>2</code> 开头，第二位数字为 <code>5</code>，第三位数字在 <code>0</code> 到 <code>5</code> 之间的 3 位数字；</li>
+</ol>
+<p>知晓上述规则后，依次罗列所有规则，准确的匹配模式自然可以构造如下：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">(((\d{1,2})|(1\d{2})|(2[0-4]\d)|(25[0-5]))\.){3}((\d{1,2})|(1\d{2})|(2[0-4]\d)|(25[0-5]))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中，按照 IPv4 地址规则，</p>
+<ul>
+<li><code>(\d{1,2})</code> 匹配任意 1 位或 2 位数字；</li>
+<li><code>(1\d{2})</code> 匹配任意以 <code>1</code> 开头的 3 位数字；</li>
+<li><code>(2[0-4]\d)</code> 匹配任意以 <code>2</code> 开头，第二位数字在 <code>0</code> 到 <code>4</code> 之间的 3 位数字；</li>
+<li><code>(25[0-5])</code> 匹配任意以 <code>25</code> 开头的 3 位数字；</li>
+</ul>
+<p>看起来不错，完全按照上述 IPv4 规则匹配，但只要实际匹配查找，会发现上述正则表达式，根本无法正常匹配 IPv4 地址，效果甚至不如第一个匹配模式。例如：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">255.255.255.0
+255.255.255.10
+255.255.255.255<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>这两种 Ipv4 地址，上述正则表达式只能匹配到第一个和第二个，却无法匹配到第三个。但是，正则表达式规则是严格按照 IPv4 地址规则定义的，为什么会出现这种情况呢？</p>
+<p>这就要引出正则表达式的贪心（greedy）特性了。也就是在正则表达式中，如果出现多个匹配模式，那么会优先匹配<strong>最长</strong>的匹配模式，而不是符合匹配规则的<strong>最短</strong>的，而且会尽量满足第一个匹配模式，具体到 IPv4 地址匹配，就是尽可能匹配最长的规则以及首位规则。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">((\d{1,2})|(1\d{2})|(2[0-4]\d)|(25[0-5]))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这是匹配一组 IPv4 地址字段的正则表达式匹配模式，其中 <code>(\d{1,2})</code> 表示匹配任意 1 ~ 2 位数字，在 IPv4 前三组字段的匹配中，由于 <code>.</code> 的存在，根据正则表达式的贪心特性，会尽可能匹配最长的匹配模式，即 <code>(\d{1,2})</code> 无法匹配的会自动切换下一子表达式，以求匹配的字符串模式更长。所以，上述正则表达式匹配前三组没有出现任何问题，但是在第四组字段的匹配过程中，由于 <code>(\d{1,2})</code> 无法匹配 <code>255</code>，所以当 <code>(\d{1,2})</code> 匹配 <code>25</code> 时，两个数字全部匹配到，匹配模式自动结束，如果第四个字段是 3 个数字，那么第三个数字将被忽略而无法匹配到。</p>
+<p>那么，如何改进呢？</p>
+<h2 id="进阶"><a class="markdownIt-Anchor" href="#进阶"></a> 进阶</h2>
+<p>其实，根据以上分析，可以发现，无需较大修改，因为 IPv4 规则仍是不变的，如果将 IPv4 地址的匹配规则改为如下，就可以完美匹配了。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">(((25[0-5])|(2[0-4]\d)|(1\d{2})|(\d{1,2}))\.){3}(((25[0-5])|(2[0-4]\d)|(1\d{2})|(\d{1,2})))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>按照正则表达式的贪心特性以及首位子表达式优先匹配特性，可以在规则组合时，优先选择匹配位数较长的子表达式，当前子表达式不满足时，在依次切换匹配位数较短的子表达式。</p>
+<h2 id="写在最后"><a class="markdownIt-Anchor" href="#写在最后"></a> 写在最后</h2>
+<p>本来只是正则表达式匹配 IPv4 地址，一个很简单的小练习，没想到发现了一个正则表达式匹配 IPv4 地址的坑，涉及到正则表达式的贪心特性以及首位子表达式优先。世事洞明皆学问，此言不虚，所以，还是记录一下吧。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/03/ru-he-yong-c-yu-yan-hua-dian-zhen-tu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -549,7 +707,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -562,7 +720,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -605,7 +763,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -615,13 +773,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">6k</span>
+    <span title="站点总字数">9k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">5 分钟</span>
+    <span title="站点阅读时长">8 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
